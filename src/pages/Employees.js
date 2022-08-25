@@ -1,7 +1,7 @@
 function Employees(){
     return(
         <>
-            <p>home1</p>
+            <p>Show Employees</p>
         </>
     )
 }
