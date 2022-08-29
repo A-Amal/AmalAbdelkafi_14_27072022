@@ -6,10 +6,21 @@ import "../styles/Home.css";
 import statesList from "../components/StatesList"
 import HRnet from "../components/HRnet";
 import Select from 'react-select'
+import {employeesAdd} from "../redux/EmployeesActions";
+import { useDispatch } from 'react-redux';
+import {useEffect, useState} from "react";
+import Modal from '@aamal/p14-plugin-modale/dist/components/Modal'
+import { ModalActions} from '@aamal/p14-plugin-modale/dist/components/ModalActions'
+import { ModalContent} from '@aamal/p14-plugin-modale/dist/components/ModalContent'
+import { ModalTitle } from '@aamal/p14-plugin-modale/dist/components/ModalTitle'
+
+
 
 
 
 function Home() {
+    const dispatch = useDispatch()
+    const [alertValidation, setAlertValidation] = useState(false)
     const optionsDepartment = [
         {value: 'Marketing', label: 'Marketing'},
         {value: 'Engineering', label: 'Engineering'},
@@ -59,23 +70,30 @@ function Home() {
     };
     const handleSubmit = (values) => {
         console.log(values);
-    };
+        dispatch(employeesAdd({...values}))// Create employee
+        setAlertValidation(!alertValidation);
+        console.log(alertValidation);
 
+    };
+    useEffect(() => {
+
+
+    }, [])
     return (
         <div className={"home"}>
             <HRnet/>
             <div className="container">
+
                 <div className="col-md-10 offset-md-1 pt-1">
                     <h1 className="text-center text-color">Create Employee</h1>
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
-
                         onSubmit={(values) => {
                             handleSubmit(values)
                         }}
                     >
-                        {({resetForm, errors, values, setFieldValue, handleBlur}) => (
+                        {({resetForm, errors, values, setFieldValue}) => (
                             <Form>
                                 <div className={"row"}>
                                     <div className={"col"}>
@@ -272,13 +290,18 @@ function Home() {
                                         Annular
                                     </button>
                                 </div>
-                                {/*<pre>{JSON.stringify(errors, null, 4)}</pre>
-                                        <p>--------------------------------------------</p>
-                                        <pre>{JSON.stringify(values, null, 4)}</pre>*/}
+
                             </Form>
                         )}
                     </Formik>
                 </div>
+                <Modal label="my-super-bright-alert"  show={alertValidation} setShow={setAlertValidation}>
+                    <ModalTitle> Modal Title</ModalTitle>
+                    <ModalContent>*****Modal Message*****</ModalContent>
+                    <ModalActions>
+                        <button type="button" onClick={() =>setAlertValidation(!alertValidation)}>Close Modal</button>
+                    </ModalActions>
+                </Modal>
             </div>
         </div>
     )
