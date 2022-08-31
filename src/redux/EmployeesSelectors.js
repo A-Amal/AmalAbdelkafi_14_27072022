@@ -6,4 +6,4 @@
 import employeesReducer from "./EmployeesReducer";
 
 
-export const authSelector = (state) => (employeesReducer (state, {}))
+export const employeesSelector = (state) => (employeesReducer (state, {}))

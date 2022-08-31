@@ -83,7 +83,6 @@ function Home() {
         <div className={"home"}>
             <HRnet/>
             <div className="container">
-
                 <div className="col-md-10 offset-md-1 pt-1">
                     <h1 className="text-center text-color">Create Employee</h1>
                     <Formik
@@ -295,14 +294,15 @@ function Home() {
                         )}
                     </Formik>
                 </div>
-                <Modal label="my-super-bright-alert"  show={alertValidation} setShow={setAlertValidation}>
-                    <ModalTitle> Modal Title</ModalTitle>
-                    <ModalContent>*****Modal Message*****</ModalContent>
-                    <ModalActions>
-                        <button type="button" onClick={() =>setAlertValidation(!alertValidation)}>Close Modal</button>
-                    </ModalActions>
-                </Modal>
             </div>
+            {alertValidation &&
+            <Modal label="my-super-bright-alert" show={alertValidation} setShow={setAlertValidation}>
+                <ModalTitle> Create Employee</ModalTitle>
+                <ModalContent>The creation of the employee has been registered, you can consult the new employee in the space "show employees"</ModalContent>
+                <ModalActions>
+                    <button type="button" onClick={() => setAlertValidation(!alertValidation)}>Close</button>
+                </ModalActions>
+            </Modal>}
         </div>
     )
 }

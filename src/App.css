@@ -7,3 +7,34 @@
   display:flex;
   flex-direction: row;
 }
+.app,
+.containers {
+  width: 100%;
+  height: 100%;
+}
+
+.containers {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.table-employees{
+  width:95%;
+  border-radius: 10px;
+
+
+}
+/*
+::-webkit-scrollbar {
+  display: block;
+}
+*/
+
+table{
+  height: 400px;
+}
