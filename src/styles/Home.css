@@ -3,13 +3,12 @@
     height: 100%;
 }
 .container{
-    width:100%;
+    width:95%;
     height: 581px;
     background-color: #ebebeb70;
     border-radius: 10px;
-    margin-top: 20px;
+    margin: 20px auto 11px 0;
     padding: 20px;
-    margin-bottom: 11px
 }
 .address{
     border-radius: 10px;

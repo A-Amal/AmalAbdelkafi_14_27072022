@@ -7,7 +7,7 @@
     "street": "347 Ford Street",
     "city": "Williams",
     "state": "Nebraska",
-    "zipcode": 21081,
+    "zipcode": "21081",
     "startDay": "2004-10-23",
     "department": "Legal"
   },
@@ -19,7 +19,7 @@
     "street": "705 Gates Avenue",
     "city": "Homeworth",
     "state": "Minnesota",
-    "zipcode": 26521,
+    "zipcode": "26521",
     "startDay": "2010-10-28",
     "department": "Human Resources"
   },
@@ -31,7 +31,7 @@
     "street": "898 Doscher Street",
     "city": "Hiwasse",
     "state": "Texas",
-    "zipcode": 60082,
+    "zipcode": "60082",
     "startDay": "2017-02-03",
     "department": "Sales"
   },
@@ -43,7 +43,7 @@
     "street": "660 Kings Hwy",
     "city": "Maybell",
     "state": "Kansas",
-    "zipcode": 21330,
+    "zipcode": "21330",
     "startDay": "2004-10-05",
     "department": "Engineering"
   },
@@ -55,7 +55,7 @@
     "street": "891 Cambridge Place",
     "city": "Terlingua",
     "state": "Georgia",
-    "zipcode": 84773,
+    "zipcode": "84773",
     "startDay": "2021-05-05",
     "department": "Marketing"
   },
@@ -67,7 +67,7 @@
     "street": "933 Mill Road",
     "city": "Woodlake",
     "state": "Pennsylvania",
-    "zipcode": 61795,
+    "zipcode": "61795",
     "startDay": "2006-02-03",
     "department": "Engineering"
   },
@@ -79,7 +79,7 @@
     "street": "896 Conway Street",
     "city": "Richville",
     "state": "Washington",
-    "zipcode": 12025,
+    "zipcode": "12025",
     "startDay": "2007-08-27",
     "department": "Legal"
   },
@@ -91,7 +91,7 @@
     "street": "543 Division Avenue",
     "city": "Loyalhanna",
     "state": "Puerto Rico",
-    "zipcode": 66035,
+    "zipcode": "66035",
     "startDay": "2001-01-19",
     "department": "Engineering"
   },
@@ -103,7 +103,7 @@
     "street": "443 Madison Place",
     "city": "Bannock",
     "state": "Iowa",
-    "zipcode": 30638,
+    "zipcode": "30638",
     "startDay": "2010-06-20",
     "department": "Engineering"
   },
@@ -115,7 +115,7 @@
     "street": "770 Garland Court",
     "city": "Santel",
     "state": "Maryland",
-    "zipcode": 29743,
+    "zipcode": "29743",
     "startDay": "2002-11-20",
     "department": "Engineering"
   },
@@ -127,7 +127,7 @@
     "street": "194 Poplar Street",
     "city": "Thermal",
     "state": "Marshall Islands",
-    "zipcode": 92768,
+    "zipcode": "92768",
     "startDay": "2013-11-30",
     "department": "Engineering"
   },
@@ -139,7 +139,7 @@
     "street": "586 Rutherford Place",
     "city": "Vernon",
     "state": "New Mexico",
-    "zipcode": 84242,
+    "zipcode": "84242",
     "startDay": "2011-01-30",
     "department": "Human Resources"
   },
@@ -151,7 +151,7 @@
     "street": "894 Seaview Avenue",
     "city": "Rosewood",
     "state": "Louisiana",
-    "zipcode": 83469,
+    "zipcode": "83469",
     "startDay": "2007-07-28",
     "department": "Engineering"
   },
@@ -163,7 +163,7 @@
     "street": "258 Batchelder Street",
     "city": "Soudan",
     "state": "New York",
-    "zipcode": 17656,
+    "zipcode": "17656",
     "startDay": "2012-03-17",
     "department": "Marketing"
   },
@@ -175,7 +175,7 @@
     "street": "596 Dean Street",
     "city": "Freeburn",
     "state": "Idaho",
-    "zipcode": 54070,
+    "zipcode": "54070",
     "startDay": "2019-01-19",
     "department": "Engineering"
   },
@@ -187,7 +187,7 @@
     "street": "371 Mayfair Drive",
     "city": "Zortman",
     "state": "American Samoa",
-    "zipcode": 94817,
+    "zipcode": "94817",
     "startDay": "2008-09-17",
     "department": "Legal"
   },
@@ -199,7 +199,7 @@
     "street": "752 Lott Place",
     "city": "Kent",
     "state": "Utah",
-    "zipcode": 45721,
+    "zipcode": "45721",
     "startDay": "2014-01-02",
     "department": "Marketing"
   },
@@ -211,7 +211,7 @@
     "street": "485 Kingsway Place",
     "city": "Valle",
     "state": "Oregon",
-    "zipcode": 57893,
+    "zipcode": "57893",
     "startDay": "2020-09-27",
     "department": "Marketing"
   },
@@ -223,7 +223,7 @@
     "street": "880 Delevan Street",
     "city": "Nogal",
     "state": "Colorado",
-    "zipcode": 65219,
+    "zipcode": "65219",
     "startDay": "2010-08-15",
     "department": "Marketing"
   },
@@ -235,7 +235,7 @@
     "street": "165 Dunne Place",
     "city": "Glenshaw",
     "state": "Wyoming",
-    "zipcode": 29719,
+    "zipcode": "29719",
     "startDay": "2008-05-28",
     "department": "Sales"
   },
@@ -247,7 +247,7 @@
     "street": "199 Vandervoort Place",
     "city": "Moscow",
     "state": "North Dakota",
-    "zipcode": 19058,
+    "zipcode": "19058",
     "startDay": "2000-06-20",
     "department": "Sales"
   }

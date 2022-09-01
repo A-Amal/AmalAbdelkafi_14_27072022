@@ -35,6 +35,35 @@
 }
 */
 
-table{
-  height: 400px;
+table {
+  width: 100%;
+  padding: 1em;
+  margin: 20px 0;
+  border-collapse: collapse;
+  box-shadow: 0 1px 2px 0 #c6e8c9;
+  border-radius: 10px;
+}
+
+thead {
+  background-color: #516214;
+  font-size: 16px;
+}
+
+th {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr {
+  height: 50px;
+}
+
+tr:nth-child(even) {
+  background-color: #e0e0e0;
 }
