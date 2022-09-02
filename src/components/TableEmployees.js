@@ -108,7 +108,7 @@ function TableEmployees() {
     };
     /**
      * Search in data
-     * @param employeesData
+     *
      */
 
     const filterSearch = () => {
@@ -124,7 +124,7 @@ function TableEmployees() {
             (new Date(date)).toLocaleDateString('en-US').includes(term)
         // Search each terms
         let results ;
-        console.log(value)
+        console.log(words)
         console.log(data)
         words.forEach((word) => {
             console.log(word)
@@ -155,7 +155,7 @@ function TableEmployees() {
     }, [])
 
     return (
-        <>
+        <div className={"container-table"}>
             <div className="search">
                 <form className="d-flex">
                     <input className="form-control me-2" type="search"
@@ -180,7 +180,7 @@ function TableEmployees() {
                     total={data.length}
                 />
             </div>
-        </>
+        </div>
     )
 }
 
