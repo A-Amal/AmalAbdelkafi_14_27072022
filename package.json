@@ -11,6 +11,8 @@
     "date-fns": "^2.29.2",
     "formik": "^2.2.9",
     "lodash": "^4.17.21",
+    "rc-dropdown": "^4.0.1",
+    "rc-menu": "^9.6.3",
     "rc-pagination": "^3.1.17",
     "rc-table": "^7.27.1",
     "react": "^18.2.0",
