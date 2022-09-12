@@ -19,7 +19,16 @@ import SORT_ASC_NUM from '../assets/icons/sort-numeric-asc1.svg'
 import statesList from "./StatesList";
 
 
+/**
+ * Table Employees pages
+ * @component
+ */
+
 function TableEmployees() {
+
+    /**
+     * States
+     */
     const dispatch = useDispatch()
     const {employees} = useSelector(employeesSelector)// Data
     const [data, setData] = useState(employeesData)
@@ -41,24 +50,19 @@ function TableEmployees() {
     const [sortDirection, setSortDirection] = useState(SORT_ASC)
     const tabField = ['firstName', 'lastName', 'department', 'street', 'city', 'state', 'zipcode']
 
-    function getSortASC(field) {
-        return data.sort((a, b) => a[field] < b[field] ? -1 : 0);
-    }
-
-    function getSortDESC(field) {
-        console.log(field)
-        return data.sort((a, b) => a[field] > b[field] ? -1 : 0);
-    }
-
+    /**
+     * sort data
+     * @param e
+     */
     const handleSortASC = (e) => {
         if (tabField.includes(e.target.title))
-            return getSortASC(e.target.title)
+            return data.sort((a, b) => a[e.target.title] < b[e.target.title] ? -1 : 0);
         else
             return data.sort((a, b) => new Date(a[e.target.title]) < new Date(b[e.target.title]) ? -1 : 0)
     }
     const handleSortDESC = (e) => {
         if (tabField.includes(e.target.title))
-            return getSortDESC(e.target.title)
+            return data.sort((a, b) => a[e.target.title] > b[e.target.title] ? -1 : 0);
         else
             return data.sort((a, b) => new Date(a[e.target.title]) > new Date(b[e.target.title]) ? -1 : 0)
 
@@ -68,16 +72,12 @@ function TableEmployees() {
             setSortDirection((currentSortDirection) =>
                 currentSortDirection === SORT_ASC ? SORT_DESC : SORT_ASC
             );
-
             if (sortColumn !== column) {
                 setSortColumn(column);
                 setSortDirection(SORT_ASC);
             }
         },
-
     });
-
-
     const columns = [
         {
             title: <div className={"columns-style"}>
@@ -231,6 +231,10 @@ function TableEmployees() {
             row: BodyRow,
         },
     };
+    /**
+     * Paginate data
+     * @param p
+     */
     const updatePage = p => {
         setCurrentPage(p);
         const to = countPerPage * p;
@@ -241,12 +245,13 @@ function TableEmployees() {
         console.log(employeesData)
         console.log(dataTable)*/
         setCollection(cloneDeep(data.slice(from, to)));
+
     };
+
     /**
      * Search in data
      *
      */
-
     const filterSearch = () => {
         // Format terms
         const words = value
@@ -260,10 +265,7 @@ function TableEmployees() {
             (new Date(date)).toLocaleDateString('en-US').includes(term)
         // Search each terms
         let results;
-        console.log(words)
-        console.log(data)
         words.forEach((word) => {
-            console.log(word)
             results = data.filter((item) => (
                 item.firstName.toLowerCase().includes(word) ||
                 item.lastName.toLowerCase().includes(word) ||
@@ -276,15 +278,12 @@ function TableEmployees() {
                 item.department.toLowerCase().includes(word)
             ))
         })
-        console.log(results)
         setData(results);
 
     }
 
     useEffect(() => {
         dispatch(employeesGet())
-        console.log(value)
-        console.log(countPerPage)
         updatePage(countPerPage)
         filterSearch(value);
     }, [countPerPage, sortDirection, sortColumn, value])

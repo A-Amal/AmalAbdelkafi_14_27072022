@@ -68,6 +68,17 @@ function Home() {
         zipCode: "",
         department: ""
     };
+    const  handleReset =(values)=>{
+        values.firstName = "";
+        values.lastName = "";
+        values.dateOfBirth = "";
+        values.startDate = initialValues.startDate;
+        values.street = initialValues.street;
+        values.city = initialValues.city;
+        values.state = initialValues.state;
+        values.zipCode = initialValues.zipCode;
+        values.department = initialValues.department;
+    }
     const handleSubmit = (values) => {
         console.log(values);
         dispatch(employeesAdd({...values}))// Create employee
@@ -77,8 +88,7 @@ function Home() {
     };
     useEffect(() => {
 
-
-    }, [])
+    }, [setAlertValidation])
     return (
         <div className={"home"}>
             <HRnet/>
@@ -90,9 +100,10 @@ function Home() {
                         validationSchema={validationSchema}
                         onSubmit={(values) => {
                             handleSubmit(values)
+                            handleReset(values)
                         }}
                     >
-                        {({resetForm, errors, values, setFieldValue}) => (
+                        {({resetForm, values, setFieldValue}) => (
                             <Form>
                                 <div className={"row"}>
                                     <div className={"col"}>
@@ -174,6 +185,7 @@ function Home() {
                                         </div>
                                     </div>
                                 </div>
+                                <div className={"title-address"}>ADDRESS</div>
                                 <div className={"address"}>
                                     <div className={"row"}>
                                         <div className={"col"}>
@@ -267,6 +279,8 @@ function Home() {
                                         value={values.department}
                                         onChange={option => setFieldValue("department", option)}
                                         defaultValue={values.department}
+                                        menuPosition="fixed"
+                                        menuPlacement="auto"
                                     />
                                     <ErrorMessage
                                         name="department"
@@ -279,7 +293,7 @@ function Home() {
                                         type="submit"
                                         className="btn btn-success button"
                                     >
-                                        Save
+                                        Create Employee
                                     </button>
                                     <button
                                         type="button"
