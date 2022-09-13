@@ -6,7 +6,7 @@ import employeesData from "../employees.json"
 import styled from 'styled-components';
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {employeesSelector} from "../redux/EmployeesSelectors";
+//import {employeesSelector} from "../redux/EmployeesSelectors";
 import {useEffect} from "react";
 import {employeesGet} from "../redux/EmployeesActions";
 import Select from "react-select";
@@ -16,7 +16,7 @@ import SORT_DESC from '../assets/icons/sort-text-desc2.svg'
 import SORT_ASC from '../assets/icons/sort-text-asc1.svg'
 import SORT_DESC_NUM from '../assets/icons/sort-numeric-desc1.svg'
 import SORT_ASC_NUM from '../assets/icons/sort-numeric-asc1.svg'
-import statesList from "./StatesList";
+//import statesList from "./StatesList";
 
 
 /**
@@ -30,12 +30,13 @@ function TableEmployees() {
      * States
      */
     const dispatch = useDispatch()
-    const {employees} = useSelector(employeesSelector)// Data
+    //const {employees} = useSelector(employeesSelector)// Data
     const [data, setData] = useState(employeesData)
     const [search, setSearch] = useState('')// Search input
     const [value, setValue] = useState("");
     const [countPerPage, setCountPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1);
+    const [numberOfPage, setNumberOfPage] = useState(0)// Number of page
     const [collection, setCollection] = useState(
         cloneDeep(data.slice(0, countPerPage))
     );
@@ -239,6 +240,8 @@ function TableEmployees() {
         setCurrentPage(p);
         const to = countPerPage * p;
         const from = to - countPerPage;
+        console.log(to)
+        console.log(from)
         /*
         employees.map((ele, cpt)=>setData(data.push(ele)))
         dataTable = data;
@@ -252,9 +255,9 @@ function TableEmployees() {
      * Search in data
      *
      */
-    const filterSearch = () => {
+    const filterSearch = (val) => {
         // Format terms
-        const words = value
+        const words = val
             .toLowerCase()
             .trim()// Remove whitespace
             .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "")// Remove punctuation
@@ -279,13 +282,17 @@ function TableEmployees() {
             ))
         })
         setData(results);
-
     }
 
     useEffect(() => {
         dispatch(employeesGet())
-        updatePage(countPerPage)
-        filterSearch(value);
+        if (!value) {
+            updatePage(1);
+            setData(employeesData)
+        }
+
+        //filterSearch(value);
+        setNumberOfPage(Math.ceil(data.length / countPerPage))
     }, [countPerPage, sortDirection, sortColumn, value])
 
     return (
@@ -306,7 +313,7 @@ function TableEmployees() {
                            value={value}
                            onChange={e => setValue(e.target.value)}
                            style={{"width": 300}}/>
-                    <button className="btn btn-outline-success" type="button" onClick={filterSearch}>Search</button>
+                    <button className="btn btn-outline-success" type="button" onClick={()=>filterSearch(value)}>Search</button>
                 </form>
             </div>
             <div className={"table-light"}>
