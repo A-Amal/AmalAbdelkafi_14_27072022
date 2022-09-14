@@ -37,3 +37,27 @@
     color: #516214;
     font-weight: bold;
 }
+@media screen and (min-width: 830px) and (max-width:  992px ) {
+.container{
+    min-width: 100%;
+}
+}
+@media screen and (min-width: 700px) and (max-width:  830px ) {
+    .main{
+        flex-direction: column;
+    }
+    .home{
+        background-color: #ebebeb70;
+        width: 100%;
+    }
+    .container {
+        width: 100%;
+        background-color: white;
+        box-shadow: 2px 1px 3px 2px #d9d9d9;
+        margin: 30px auto;
+        border-radius: 10px;
+    }
+    .text-center {
+        text-align: left;
+    }
+}

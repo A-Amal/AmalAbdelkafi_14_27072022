@@ -124,3 +124,11 @@ color: white!important;
 .modal-title{
   color: #516214 !important;
 }
+.div-search-select{
+  width: 40%;
+}
+@media screen and (min-width: 700px) and (max-width:  830px ){
+  .container-table{
+    box-shadow: none;
+  }
+}

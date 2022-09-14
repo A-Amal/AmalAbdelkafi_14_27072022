@@ -32,11 +32,9 @@ function TableEmployees() {
     const dispatch = useDispatch()
     //const {employees} = useSelector(employeesSelector)// Data
     const [data, setData] = useState(employeesData)
-    const [search, setSearch] = useState('')// Search input
     const [value, setValue] = useState("");
     const [countPerPage, setCountPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberOfPage, setNumberOfPage] = useState(0)// Number of page
     const [collection, setCollection] = useState(
         cloneDeep(data.slice(0, countPerPage))
     );
@@ -290,15 +288,12 @@ function TableEmployees() {
             updatePage(1);
             setData(employeesData)
         }
-
-        //filterSearch(value);
-        setNumberOfPage(Math.ceil(data.length / countPerPage))
     }, [countPerPage, sortDirection, sortColumn, value])
 
     return (
         <div className={"container-table"}>
             <div className="search">
-                <div style={{"width": 400}}>
+                <div className="div-search-select" >
                     <Select
                         options={optionsCountPerPage}
                         name="countPerPage"
@@ -308,11 +303,12 @@ function TableEmployees() {
                     />
                 </div>
                 <form className="d-flex">
-                    <input className="form-control me-2" type="search"
+                    <input className="form-control me-2 div-search-select" type="search"
                            placeholder="Search" aria-label="Search"
                            value={value}
                            onChange={e => setValue(e.target.value)}
-                           style={{"width": 300}}/>
+
+                           />
                     <button className="btn btn-outline-success" type="button" onClick={()=>filterSearch(value)}>Search</button>
                 </form>
             </div>
