@@ -90,7 +90,7 @@ a.header-nav-link{
 
     }
 }
-@media screen and (min-width: 700px) and (max-width:  830px ) {
+@media screen and (min-width: 650px) and (max-width:  830px ) {
    .header{
        width: 100%;
        display: flex;
@@ -104,6 +104,11 @@ a.header-nav-link{
         flex-direction: row;
         width: 70%;
         justify-content: flex-end;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .header-nav-menu-item-span {
+        margin-top: 5px;
     }
     .header-nav-menu{
         width: 80%;
@@ -121,5 +126,74 @@ a.header-nav-link{
         background-color: white;
         text-decoration-style: solid;
         text-decoration-color: #516214;
+    }
+}
+@media screen and (min-width: 500px) and (max-width:  650px ) {
+    .header{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .header-nav-logo{
+        width: 30%;
+        margin: auto;
+    }
+    .header-nav {
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-end;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .header-nav-menu-item-span {
+        margin-top: 5px;
+    }
+    .header-nav-menu{
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+    }
+    .header-nav-logo-smImg {
+        display: none;
+    }
+    .header-nav-menu-item:active{
+        background-color: white;
+    }
+    .header-nav-link.active{
+        background-color: white;
+        text-decoration-style: solid;
+        text-decoration-color: #516214;
+    }
+    .header-nav-menu-item-img{
+        width: 20px;
+    }
+}
+@media all and (max-device-width: 500px){
+    .header {
+        width: 20%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .header-nav-logo {
+        height: 20%;
+    }
+    .header-nav-logo-text{
+        display: none;
+    }
+    .header-nav-menu-item-span{
+        display: none;
+    }
+    .header-nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .header-nav-menu-item-img {
+        width: 60%;
+        height: 30px;
+        margin: 0 auto;
     }
 }

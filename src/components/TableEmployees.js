@@ -73,8 +73,8 @@ function TableEmployees() {
             );
             if (sortColumn !== column) {
                 setSortColumn(column);
-                setSortDirection(SORT_ASC);
-            }
+                setSortDirection(SORT_ASC);}
+
         },
     });
     const columns = [
@@ -283,7 +283,7 @@ function TableEmployees() {
             updatePage(1);
             setData(data)
         }
-    }, [countPerPage, sortDirection, sortColumn, value])
+    }, [countPerPage, sortDirection, sortColumn, value, dispatch,  data])
 
     return (
         <div className={"container-table"}>
@@ -317,7 +317,7 @@ function TableEmployees() {
                     components={components}
                     sticky
                 />
-                {value? <Pagination
+                {value ? <Pagination
                     pageSize={countPerPage}
                     onChange={updatePage}
                     current={currentPage}

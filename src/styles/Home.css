@@ -42,7 +42,7 @@
     min-width: 100%;
 }
 }
-@media screen and (min-width: 700px) and (max-width:  830px ) {
+@media screen and (min-width: 500px) and (max-width:  830px ) {
     .main{
         flex-direction: column;
     }
@@ -51,7 +51,7 @@
         width: 100%;
     }
     .container {
-        width: 100%;
+        width: 90%;
         background-color: white;
         box-shadow: 2px 1px 3px 2px #d9d9d9;
         margin: 30px auto;
@@ -59,5 +59,20 @@
     }
     .text-center {
         text-align: left;
+    }
+}
+@media all and (max-device-width: 500px){
+    .text-color{
+        font-size: 20px;
+    }
+    .row{
+        display: flex;
+        flex-direction: column;
+    }
+    label{
+        font-size: 14px;
+    }
+    .button{
+        font-size: 12px;
     }
 }

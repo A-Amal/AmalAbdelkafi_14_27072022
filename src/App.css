@@ -127,8 +127,30 @@ color: white!important;
 .div-search-select{
   width: 40%;
 }
-@media screen and (min-width: 700px) and (max-width:  830px ){
+@media screen and (min-width: 500px) and (max-width:  830px ){
   .container-table{
     box-shadow: none;
+  }
+}
+@media all and (max-device-width: 500px) {
+  .container-table {
+    min-height: 100%;
+    max-height: 100%;
+  }
+
+  .search {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .div-search-select {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .btn{
+    height: 38px;
+  }
+  .table-light{
+    font-size: 14px;
   }
 }
