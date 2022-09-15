@@ -2,11 +2,10 @@ import Table from "rc-table";
 import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 import cloneDeep from "lodash/cloneDeep";
-import employeesData from "../employees.json"
 import styled from 'styled-components';
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-//import {employeesSelector} from "../redux/EmployeesSelectors";
+import {employeesSelector} from "../redux/EmployeesSelectors";
 import {useEffect} from "react";
 import {employeesGet} from "../redux/EmployeesActions";
 import Select from "react-select";
@@ -16,7 +15,6 @@ import SORT_DESC from '../assets/icons/sort-text-desc2.svg'
 import SORT_ASC from '../assets/icons/sort-text-asc1.svg'
 import SORT_DESC_NUM from '../assets/icons/sort-numeric-desc1.svg'
 import SORT_ASC_NUM from '../assets/icons/sort-numeric-asc1.svg'
-//import statesList from "./StatesList";
 
 
 /**
@@ -29,14 +27,16 @@ function TableEmployees() {
     /**
      * States
      */
+
     const dispatch = useDispatch()
-    //const {employees} = useSelector(employeesSelector)// Data
-    const [data, setData] = useState(employeesData)
+    const {employees} = useSelector(employeesSelector)// Data
+    const [data, setData] = useState(employees)
     const [value, setValue] = useState("");
+    const [dataSearch, setDataSearch] = useState(employees)
     const [countPerPage, setCountPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1);
     const [collection, setCollection] = useState(
-        cloneDeep(data.slice(0, countPerPage))
+       value? cloneDeep(dataSearch.slice(0, countPerPage)):cloneDeep(employees.slice(0, countPerPage))
     );
     const optionsCountPerPage = [
         {value: 5, label: 5},
@@ -55,15 +55,15 @@ function TableEmployees() {
      */
     const handleSortASC = (e) => {
         if (tabField.includes(e.target.title))
-            return data.sort((a, b) => a[e.target.title] < b[e.target.title] ? -1 : 0);
+            return employees.sort((a, b) => a[e.target.title] < b[e.target.title] ? -1 : 0);
         else
-            return data.sort((a, b) => new Date(a[e.target.title]) < new Date(b[e.target.title]) ? -1 : 0)
+            return employees.sort((a, b) => new Date(a[e.target.title]) < new Date(b[e.target.title]) ? -1 : 0)
     }
     const handleSortDESC = (e) => {
         if (tabField.includes(e.target.title))
-            return data.sort((a, b) => a[e.target.title] > b[e.target.title] ? -1 : 0);
+            return employees.sort((a, b) => a[e.target.title] > b[e.target.title] ? -1 : 0);
         else
-            return data.sort((a, b) => new Date(a[e.target.title]) > new Date(b[e.target.title]) ? -1 : 0)
+            return employees.sort((a, b) => new Date(a[e.target.title]) > new Date(b[e.target.title]) ? -1 : 0)
 
     }
     const addOnHeaderCell = (column) => ({
@@ -213,7 +213,7 @@ function TableEmployees() {
             onHeaderCell: () => addOnHeaderCell("Zip Code")
         }
     ];
-    // let dataTable
+// let dataTable
     const BodyRow = styled.tr`
       & td {
         transition: all 0.3s;
@@ -230,6 +230,7 @@ function TableEmployees() {
             row: BodyRow,
         },
     };
+
     /**
      * Paginate data
      * @param p
@@ -238,14 +239,7 @@ function TableEmployees() {
         setCurrentPage(p);
         const to = countPerPage * p;
         const from = to - countPerPage;
-        console.log(to)
-        console.log(from)
-        /*
-        employees.map((ele, cpt)=>setData(data.push(ele)))
-        dataTable = data;
-        console.log(employeesData)
-        console.log(dataTable)*/
-        setCollection(cloneDeep(data.slice(from, to)));
+        value? setCollection(cloneDeep(dataSearch.slice(from, to))):setCollection(cloneDeep(employees.slice(from, to)))
 
     };
 
@@ -254,6 +248,7 @@ function TableEmployees() {
      *
      */
     const filterSearch = (val) => {
+        setDataSearch(employees)
         // Format terms
         const words = val
             .toLowerCase()
@@ -267,7 +262,7 @@ function TableEmployees() {
         // Search each terms
         let results;
         words.forEach((word) => {
-            results = data.filter((item) => (
+            results = dataSearch.filter((item) => (
                 item.firstName.toLowerCase().includes(word) ||
                 item.lastName.toLowerCase().includes(word) ||
                 searchInDate(item.dateOfBirth, word) ||
@@ -279,21 +274,21 @@ function TableEmployees() {
                 item.department.toLowerCase().includes(word)
             ))
         })
-        setData(results);
+        setDataSearch(results);
     }
 
     useEffect(() => {
         dispatch(employeesGet())
         if (!value) {
             updatePage(1);
-            setData(employeesData)
+            setData(data)
         }
     }, [countPerPage, sortDirection, sortColumn, value])
 
     return (
         <div className={"container-table"}>
             <div className="search">
-                <div className="div-search-select" >
+                <div className="div-search-select">
                     <Select
                         options={optionsCountPerPage}
                         name="countPerPage"
@@ -307,9 +302,10 @@ function TableEmployees() {
                            placeholder="Search" aria-label="Search"
                            value={value}
                            onChange={e => setValue(e.target.value)}
-
-                           />
-                    <button className="btn btn-outline-success" type="button" onClick={()=>filterSearch(value)}>Search</button>
+                    />
+                    <button className="btn btn-outline-success" type="button"
+                            onClick={() => filterSearch(value)}>Search
+                    </button>
                 </form>
             </div>
             <div className={"table-light"}>
@@ -321,12 +317,18 @@ function TableEmployees() {
                     components={components}
                     sticky
                 />
+                {value? <Pagination
+                    pageSize={countPerPage}
+                    onChange={updatePage}
+                    current={currentPage}
+                    total={dataSearch.length}
+                />:
                 <Pagination
                     pageSize={countPerPage}
                     onChange={updatePage}
                     current={currentPage}
-                    total={data.length}
-                />
+                    total={employees.length}
+                />}
             </div>
         </div>
     )

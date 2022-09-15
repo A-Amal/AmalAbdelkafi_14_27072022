@@ -1,5 +1,5 @@
 let statesList;
-export default  statesList = [
+export default statesList = [
     {
         "label": "Alabama",
         "value": "AL"
@@ -70,7 +70,7 @@ export default  statesList = [
     },
     {
         "label": "Indiana",
-        "abbreviation": "IN"
+        "value": "IN"
     },
     {
         "label": "Iowa",

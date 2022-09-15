@@ -41,7 +41,7 @@ function Home() {
             .typeError("please enter a valid date")
             .required()
             .min("1969-11-13", "Date is too early"),
-        startDate: Yup.date()
+        startDay: Yup.date()
             .transform(function (value, originalValue) {
                 if (this.isType(value)) {
                     return value;
@@ -53,35 +53,35 @@ function Home() {
             .min("1969-11-13", "Date is too early"),
         street: Yup.string().min(2, "too small").max(20, "too long!").required("This field is required"),
         city: Yup.string().min(2, "too small").max(10, "too long!").required("This field is required"),
-        state: Yup.object().required("This field is required"),
-        zipCode: Yup.number().required("This field is required"),
-        department: Yup.object().required("This field is required")
+        state: Yup.string().required("This field is required"),
+        zipcode: Yup.number().required("This field is required"),
+        department: Yup.string().required("This field is required")
     });
     const initialValues = {
         firstName: "",
         lastName: "",
         dateOfBirth: "",
-        startDate: "",
+        startDay: "",
         street: "",
         city: "",
         state: "",
-        zipCode: "",
+        zipcode: "",
         department: ""
     };
     const  handleReset =(values)=>{
         values.firstName = "";
         values.lastName = "";
         values.dateOfBirth = "";
-        values.startDate = initialValues.startDate;
+        values.startDay = initialValues.startDay;
         values.street = initialValues.street;
         values.city = initialValues.city;
         values.state = initialValues.state;
-        values.zipCode = initialValues.zipCode;
+        values.zipcode = initialValues.zipcode;
         values.department = initialValues.department;
     }
     const handleSubmit = (values) => {
-        console.log(values);
-        dispatch(employeesAdd({...values}))// Create employee
+        console.log({...values});
+        dispatch(employeesAdd(values))// Create employee
         setAlertValidation(!alertValidation);
         console.log(alertValidation);
 
@@ -167,18 +167,18 @@ function Home() {
                                     </div>
                                     <div className={"col"}>
                                         <div className="form-group mb-3">
-                                            <label htmlFor="startDate">
+                                            <label htmlFor="startDay">
                                                 Start Date:
                                             </label>
                                             <Field
                                                 type="Date"
-                                                id="startDate"
-                                                name="startDate"
+                                                id="startDay"
+                                                name="startDay"
                                                 className="form-control"
-                                                value={values.startDate}
+                                                value={values.startDay}
                                             />
                                             <ErrorMessage
-                                                name="startDate"
+                                                name="startDay"
                                                 component="small"
                                                 className="text-danger"
                                             />
@@ -238,7 +238,8 @@ function Home() {
                                                     name="state"
                                                     id={"state"}
                                                     value={values.state}
-                                                    onChange={option => setFieldValue("state", option)}
+                                                    onChange={option =>
+                                                        setFieldValue("state", option["value"])}
                                                     defaultValue={values.state}
                                                 />
                                                 <ErrorMessage
@@ -250,17 +251,17 @@ function Home() {
                                         </div>
                                         <div className={"col"}>
                                             <div className="form-group mb-3">
-                                                <label htmlFor="zipCode">
+                                                <label htmlFor="zipcode">
                                                     Zip Code:
                                                 </label>
                                                 <Field
-                                                    id="zipCode"
-                                                    name="zipCode"
+                                                    id="zipcode"
+                                                    name="zipcode"
                                                     className="form-control"
-                                                    value={values.zipCode}
+                                                    value={values.zipcode}
                                                 />
                                                 <ErrorMessage
-                                                    name="zipCode"
+                                                    name="zipcode"
                                                     component="small"
                                                     className="text-danger"
                                                 />
@@ -277,7 +278,7 @@ function Home() {
                                         name="department"
                                         id={"department"}
                                         value={values.department}
-                                        onChange={option => setFieldValue("department", option)}
+                                        onChange={option => setFieldValue("department", option["value"])}
                                         defaultValue={values.department}
                                         menuPosition="fixed"
                                         menuPlacement="auto"

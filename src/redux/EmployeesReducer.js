@@ -1,10 +1,12 @@
 import { EMPLOYEES_ADD, EMPLOYEES_GET } from "./EmployeesActions"
+import {v4 as uuid} from "uuid";
+import employeesJson from "../employees.json"
 
 /**
  * @const initialState
  */
 const initialState = {
-    employees: [],
+    employees: JSON.parse(localStorage.getItem('employees')) || [],
 }
 /**
  * Employees reducer
@@ -17,6 +19,7 @@ export default function employeesReducer(state = initialState, action) {
         // Add an employee
         case EMPLOYEES_ADD : {
             const newEmployee = action.payload
+            newEmployee.key = uuid()
             const employeesList = JSON.parse(localStorage.getItem('employees')) || []
             employeesList.push(newEmployee)
             localStorage.setItem('employees', JSON.stringify(employeesList))
@@ -24,6 +27,7 @@ export default function employeesReducer(state = initialState, action) {
         }
         // Get a employees list
         case EMPLOYEES_GET : {
+            //localStorage.setItem('employees', JSON.stringify(employeesJson))
             const employees = JSON.parse(localStorage.getItem('employees')) || []
             return {...state, employees: employees}
         }
