@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import logoImg from '../assets/logo.jpg'
 import logoSMImg from '../assets/logo-sm.jpg'
 import logoText from '../assets/logo-text.jpg'
 import usersIcon from '../assets/icons/users.svg'
@@ -16,18 +15,22 @@ function Header(){
             </div>
             <nav className="header-nav">
                 <ul className="header-nav-menu">
+                    <li className="header-nav-menu-item">
                     <NavLink to="/" end className={({ isActive }) => isActive ? "header-nav-link active" : "header-nav-link"}>
-                        <li className="header-nav-menu-item">
+
                             <img src={userPlusIcon} alt="icon add user " className="header-nav-menu-item-img" />
                             <span className="header-nav-menu-item-span">Create Employee</span>
-                        </li>
+
                     </NavLink>
+                    </li>
+                    <li className="header-nav-menu-item">
                     <NavLink to="/employees" end className={({ isActive }) => isActive ? "header-nav-link active" : "header-nav-link"} >
-                        <li className="header-nav-menu-item">
+
                             <img src={usersIcon} alt="Icon users" className="header-nav-menu-item-img" />
                             <span className="header-nav-menu-item-span">Show Employees</span>
-                        </li>
+
                     </NavLink>
+                    </li>
                 </ul>
             </nav>
         </header>

@@ -230,11 +230,12 @@ function Home() {
                                     <div className={"row"}>
                                         <div className={"col"}>
                                             <div className="form-group mb-3">
-                                                <label htmlFor="state">
+                                                <label htmlFor="state" >
                                                     state:
                                                 </label>
                                                 <Select
                                                     options={statesList}
+                                                    aria-labelledby={"state"}
                                                     name="state"
                                                     id={"state"}
                                                     value={values.state}
@@ -270,11 +271,12 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className="form-group mb-3">
-                                    <label htmlFor="department">
+                                    <label htmlFor="department" >
                                         Department:
                                     </label>
                                     <Select
                                         options={optionsDepartment}
+                                        aria-labelledby={"department"}
                                         name="department"
                                         id={"department"}
                                         value={values.department}

@@ -2,7 +2,6 @@ import Table from "rc-table";
 import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 import cloneDeep from "lodash/cloneDeep";
-import styled from 'styled-components';
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {employeesSelector} from "../redux/EmployeesSelectors";
@@ -30,7 +29,6 @@ function TableEmployees() {
 
     const dispatch = useDispatch()
     const {employees} = useSelector(employeesSelector)// Data
-    const [data, setData] = useState(employees)
     const [value, setValue] = useState("");
     const [dataSearch, setDataSearch] = useState(employees)
     const [countPerPage, setCountPerPage] = useState(5)
@@ -55,26 +53,26 @@ function TableEmployees() {
      */
     const handleSortASC = (e) => {
         if (tabField.includes(e.target.title))
-            return employees.sort((a, b) => a[e.target.title] < b[e.target.title] ? -1 : 0);
+           return employees.sort((a, b) => a[e.target.title] < b[e.target.title] ? -1 : 0)
         else
             return employees.sort((a, b) => new Date(a[e.target.title]) < new Date(b[e.target.title]) ? -1 : 0)
     }
     const handleSortDESC = (e) => {
         if (tabField.includes(e.target.title))
-            return employees.sort((a, b) => a[e.target.title] > b[e.target.title] ? -1 : 0);
+            return  employees.sort((a, b) => a[e.target.title] > b[e.target.title] ? -1 : 0)
         else
-            return employees.sort((a, b) => new Date(a[e.target.title]) > new Date(b[e.target.title]) ? -1 : 0)
+            return  employees.sort((a, b) => new Date(a[e.target.title]) > new Date(b[e.target.title]) ? -1 : 0)
 
     }
     const addOnHeaderCell = (column) => ({
-        onClick: () => {
+        "onClick": () => {
             setSortDirection((currentSortDirection) =>
                 currentSortDirection === SORT_ASC ? SORT_DESC : SORT_ASC
             );
             if (sortColumn !== column) {
                 setSortColumn(column);
-                setSortDirection(SORT_ASC);}
-
+                setSortDirection(SORT_ASC);
+            }
         },
     });
     const columns = [
@@ -91,7 +89,7 @@ function TableEmployees() {
             dataIndex: "firstName",
             key: "First Name",
             width: 150,
-            onHeaderCell: () => addOnHeaderCell("First Name")
+            onHeaderCell: () => addOnHeaderCell( "firstName")
         },
         {
             title: <div className={"columns-style"}>
@@ -106,7 +104,7 @@ function TableEmployees() {
             dataIndex: "lastName",
             key: "Last Name",
             width: 150,
-            onHeaderCell: () => addOnHeaderCell("Last Name")
+            onHeaderCell: () => addOnHeaderCell("lastName")
         },
         {
             title: <div className={"columns-style"}>
@@ -121,7 +119,7 @@ function TableEmployees() {
             dataIndex: "startDay",
             key: "Start Date",
             width: 150,
-            onHeaderCell: () => addOnHeaderCell("Start Date")
+            onHeaderCell: () => addOnHeaderCell("startDay")
         },
         {
             title: <div className={"columns-style"}>
@@ -214,6 +212,7 @@ function TableEmployees() {
         }
     ];
 // let dataTable
+    /*
     const BodyRow = styled.tr`
       & td {
         transition: all 0.3s;
@@ -230,7 +229,7 @@ function TableEmployees() {
             row: BodyRow,
         },
     };
-
+*/
     /**
      * Paginate data
      * @param p
@@ -281,9 +280,8 @@ function TableEmployees() {
         dispatch(employeesGet())
         if (!value) {
             updatePage(1);
-            setData(data)
         }
-    }, [countPerPage, sortDirection, sortColumn, value, dispatch,  data])
+    }, [countPerPage, sortDirection, sortColumn, value, dispatch])
 
     return (
         <div className={"container-table"}>
@@ -292,6 +290,7 @@ function TableEmployees() {
                     <Select
                         options={optionsCountPerPage}
                         name="countPerPage"
+                        aria-labelledby={"countPerPage"}
                         id={"countPerPage"}
                         value={countPerPage}
                         onChange={option => setCountPerPage(option.value)}
@@ -314,7 +313,6 @@ function TableEmployees() {
                     data={collection}
                     tableLayout="auto"
                     style={{marginBottom: 20}} scroll={{x: 1500}}
-                    components={components}
                     sticky
                 />
                 {value ? <Pagination

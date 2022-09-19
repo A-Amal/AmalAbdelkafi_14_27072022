@@ -4,8 +4,8 @@
 }
 .container{
     width:100%;
-    height: 600px;
-    background-color: #ebebeb70;
+    height: auto;
+    background-color: #ebebeb;
     margin: 0 auto ;
     padding: 20px;
     overflow-y: auto;
@@ -17,7 +17,7 @@
     margin-bottom: 10px;
 }
 .text-color{
-    color: #92ac18;
+    color: #516214;
 
 }
 .button{
