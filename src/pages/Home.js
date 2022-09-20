@@ -13,6 +13,8 @@ import Modal from '@aamal/p14-plugin-modale/dist/components/Modal'
 import { ModalActions} from '@aamal/p14-plugin-modale/dist/components/ModalActions'
 import { ModalContent} from '@aamal/p14-plugin-modale/dist/components/ModalContent'
 import { ModalTitle } from '@aamal/p14-plugin-modale/dist/components/ModalTitle'
+import {map} from "lodash";
+import {value} from "lodash/seq";
 
 
 
@@ -53,9 +55,9 @@ function Home() {
             .min("1969-11-13", "Date is too early"),
         street: Yup.string().min(2, "too small").max(20, "too long!").required("This field is required"),
         city: Yup.string().min(2, "too small").max(10, "too long!").required("This field is required"),
-        state: Yup.string().required("This field is required"),
+        state: Yup.object().required("This field is required"),
         zipcode: Yup.number().required("This field is required"),
-        department: Yup.string().required("This field is required")
+        department: Yup.object().required("This field is required")
     });
     const initialValues = {
         firstName: "",
@@ -80,8 +82,10 @@ function Home() {
         values.department = initialValues.department;
     }
     const handleSubmit = (values) => {
-        console.log({...values});
-        dispatch(employeesAdd(values))// Create employee
+        console.log(values);
+        console.log(values['department']['value']);
+        let obj_values = {...values, "department":values['department']['value'], "state":values['state']['value']}
+        dispatch(employeesAdd(obj_values))// Create employee
         setAlertValidation(!alertValidation);
         console.log(alertValidation);
 
@@ -240,7 +244,7 @@ function Home() {
                                                     id={"state"}
                                                     value={values.state}
                                                     onChange={option =>
-                                                        setFieldValue("state", option["value"])}
+                                                        setFieldValue("state", option)}
                                                     defaultValue={values.state}
                                                 />
                                                 <ErrorMessage
@@ -280,7 +284,7 @@ function Home() {
                                         name="department"
                                         id={"department"}
                                         value={values.department}
-                                        onChange={option => setFieldValue("department", option["value"])}
+                                        onChange={option => setFieldValue("department", option)}
                                         defaultValue={values.department}
                                         menuPosition="fixed"
                                         menuPlacement="auto"
