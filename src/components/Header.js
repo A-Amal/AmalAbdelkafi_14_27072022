@@ -27,7 +27,7 @@ function Header(){
                     <NavLink to="/employees" end className={({ isActive }) => isActive ? "header-nav-link active" : "header-nav-link"} >
 
                             <img src={usersIcon} alt="Icon users" className="header-nav-menu-item-img" />
-                            <span className="header-nav-menu-item-span">Show Employees</span>
+                            <span className="header-nav-menu-item-span">Current Employees</span>
 
                     </NavLink>
                     </li>

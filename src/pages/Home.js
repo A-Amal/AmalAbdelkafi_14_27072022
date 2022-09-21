@@ -13,10 +13,6 @@ import Modal from '@aamal/p14-plugin-modale/dist/components/Modal'
 import { ModalActions} from '@aamal/p14-plugin-modale/dist/components/ModalActions'
 import { ModalContent} from '@aamal/p14-plugin-modale/dist/components/ModalContent'
 import { ModalTitle } from '@aamal/p14-plugin-modale/dist/components/ModalTitle'
-import {map} from "lodash";
-import {value} from "lodash/seq";
-
-
 
 
 
