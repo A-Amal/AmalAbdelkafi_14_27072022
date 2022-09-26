@@ -34,7 +34,7 @@ function TableEmployees() {
     const [countPerPage, setCountPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1);
     const [collection, setCollection] = useState(
-       value? cloneDeep(dataSearch.slice(0, countPerPage)):cloneDeep(employees.slice(0, countPerPage))
+        value? cloneDeep(dataSearch.slice(0, countPerPage)):cloneDeep(employees.slice(0, countPerPage))
     );
     const optionsCountPerPage = [
         {value: 5, label: 5},
@@ -52,8 +52,9 @@ function TableEmployees() {
      * @param e
      */
     const handleSortASC = (e) => {
+
         if (tabField.includes(e.target.title))
-           return employees.sort((a, b) => a[e.target.title] < b[e.target.title] ? -1 : 0)
+            return employees.sort((a, b) => a[e.target.title] < b[e.target.title] ? -1 : 0)
         else
             return employees.sort((a, b) => new Date(a[e.target.title]) < new Date(b[e.target.title]) ? -1 : 0)
     }
@@ -217,13 +218,11 @@ function TableEmployees() {
       & td {
         transition: all 0.3s;
       }
-
       &:hover td {
         background: rgba(191, 189, 189, 0.64);
         transform: scale(1.01);
       }
     `;
-
     const components = {
         body: {
             row: BodyRow,
@@ -264,12 +263,14 @@ function TableEmployees() {
             results = dataSearch.filter((item) => (
                 item.firstName.toLowerCase().includes(word) ||
                 item.lastName.toLowerCase().includes(word) ||
-                searchInDate(item.dateOfBirth, word) ||
+                //searchInDate(item.dateOfBirth, word) ||
+                item.dateOfBirth.includes(word)||
                 item.street.toLowerCase().includes(word) ||
                 item.city.toLowerCase().includes(word) ||
                 item.state.toLowerCase().includes(word) ||
                 item.zipcode.toLowerCase().includes(word) ||
-                searchInDate(item.startDay, word) ||
+                //searchInDate(item.startDay, word) ||
+                item.startDay.includes(word)||
                 item.department.toLowerCase().includes(word)
             ))
         })
@@ -278,10 +279,10 @@ function TableEmployees() {
 
     useEffect(() => {
         dispatch(employeesGet())
-        if (!value) {
+        if (value!=="" ||!value) {
             updatePage(1);
         }
-    }, [countPerPage, sortDirection, sortColumn, value, dispatch])
+    }, [countPerPage, sortDirection, sortColumn, value, dispatch, dataSearch])
 
     return (
         <div className={"container-table"}>
@@ -316,17 +317,17 @@ function TableEmployees() {
                     sticky
                 />
                 {value ? <Pagination
-                    pageSize={countPerPage}
-                    onChange={updatePage}
-                    current={currentPage}
-                    total={dataSearch.length}
-                />:
-                <Pagination
-                    pageSize={countPerPage}
-                    onChange={updatePage}
-                    current={currentPage}
-                    total={employees.length}
-                />}
+                        pageSize={countPerPage}
+                        onChange={updatePage}
+                        current={currentPage}
+                        total={dataSearch.length}
+                    />:
+                    <Pagination
+                        pageSize={countPerPage}
+                        onChange={updatePage}
+                        current={currentPage}
+                        total={employees.length}
+                    />}
             </div>
         </div>
     )

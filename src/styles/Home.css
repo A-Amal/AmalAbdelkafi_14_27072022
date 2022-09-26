@@ -1,6 +1,7 @@
 .home{
     width: 80%;
     height: 100%;
+
 }
 .container{
     width:100%;
@@ -9,6 +10,7 @@
     margin: 0 auto ;
     padding: 20px;
     overflow-y: auto;
+    min-height: 612px;
 }
 .address{
     border-radius: 10px;

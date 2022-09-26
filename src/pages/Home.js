@@ -79,8 +79,8 @@ function Home() {
     }
     const handleSubmit = (values) => {
         console.log(values);
-        console.log(values['department']['value']);
-        let obj_values = {...values, "department":values['department']['value'], "state":values['state']['value']}
+        console.log(values['department']['label']);
+        let obj_values = {...values, "department":values['department']['label'], "state":values['state']['label']}
         dispatch(employeesAdd(obj_values))// Create employee
         setAlertValidation(!alertValidation);
         console.log(alertValidation);
