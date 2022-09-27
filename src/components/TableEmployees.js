@@ -1,4 +1,5 @@
 import Table from "rc-table";
+import styled from 'styled-components';
 import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 import cloneDeep from "lodash/cloneDeep";
@@ -213,7 +214,7 @@ function TableEmployees() {
         }
     ];
 // let dataTable
-    /*
+
     const BodyRow = styled.tr`
       & td {
         transition: all 0.3s;
@@ -228,7 +229,7 @@ function TableEmployees() {
             row: BodyRow,
         },
     };
-*/
+
     /**
      * Paginate data
      * @param p
@@ -253,23 +254,17 @@ function TableEmployees() {
             .trim()// Remove whitespace
             .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "")// Remove punctuation
             .split(' ')
-        // Search method
-        const searchInDate = (date, term) =>
-            (new Date(date)).toLocaleDateString('en-US').toLowerCase().includes(term) ||
-            (new Date(date)).toLocaleDateString('en-US').includes(term)
         // Search each terms
         let results;
         words.forEach((word) => {
             results = dataSearch.filter((item) => (
                 item.firstName.toLowerCase().includes(word) ||
                 item.lastName.toLowerCase().includes(word) ||
-                //searchInDate(item.dateOfBirth, word) ||
                 item.dateOfBirth.includes(word)||
                 item.street.toLowerCase().includes(word) ||
                 item.city.toLowerCase().includes(word) ||
                 item.state.toLowerCase().includes(word) ||
                 item.zipcode.toLowerCase().includes(word) ||
-                //searchInDate(item.startDay, word) ||
                 item.startDay.includes(word)||
                 item.department.toLowerCase().includes(word)
             ))
@@ -279,6 +274,7 @@ function TableEmployees() {
 
     useEffect(() => {
         dispatch(employeesGet())
+
         if (value!=="" ||!value) {
             updatePage(1);
         }
@@ -314,6 +310,7 @@ function TableEmployees() {
                     data={collection}
                     tableLayout="auto"
                     style={{marginBottom: 20}} scroll={{x: 1500}}
+                    components={ components}
                     sticky
                 />
                 {value ? <Pagination
