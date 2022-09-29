@@ -315,7 +315,7 @@ function Home() {
             {alertValidation &&
             <Modal label="my-super-bright-alert" show={alertValidation} setShow={setAlertValidation}>
                 <ModalTitle> Create Employee</ModalTitle>
-                <ModalContent>The creation of the employee has been registered, you can consult the new employee in the space "show employees"</ModalContent>
+                <ModalContent>The creation of the employee has been registered, you can consult the new employee in the space "current employees"</ModalContent>
                 <ModalActions>
                     <button type="button" onClick={() => setAlertValidation(!alertValidation)}>Close</button>
                 </ModalActions>

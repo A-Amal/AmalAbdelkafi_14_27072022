@@ -1,5 +1,5 @@
 import Table from "rc-table";
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 import cloneDeep from "lodash/cloneDeep";
@@ -214,7 +214,7 @@ function TableEmployees() {
         }
     ];
 // let dataTable
-
+/*
     const BodyRow = styled.tr`
       & td {
         transition: all 0.3s;
@@ -229,7 +229,7 @@ function TableEmployees() {
             row: BodyRow,
         },
     };
-
+*/
     /**
      * Paginate data
      * @param p
@@ -310,7 +310,6 @@ function TableEmployees() {
                     data={collection}
                     tableLayout="auto"
                     style={{marginBottom: 20}} scroll={{x: 1500}}
-                    components={ components}
                     sticky
                 />
                 {value ? <Pagination

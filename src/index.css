@@ -21,3 +21,8 @@ code {
 a{
   text-decoration: none;
 }
+@media all and (max-device-width: 500px){
+  .hrnet{
+    display: none;
+  }
+}

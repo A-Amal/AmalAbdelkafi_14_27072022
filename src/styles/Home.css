@@ -10,7 +10,7 @@
     margin: 0 auto ;
     padding: 20px;
     overflow-y: auto;
-    min-height: 612px;
+    min-height: 621px;
 }
 .address{
     border-radius: 10px;
@@ -48,6 +48,10 @@
     .main{
         flex-direction: column;
     }
+    a.header-nav-link.active {
+        display: block;
+        background-color: #ffffff;
+    }
     .home{
         background-color: #ebebeb70;
         width: 100%;
@@ -64,6 +68,12 @@
     }
 }
 @media all and (max-device-width: 500px){
+    .container{
+        margin-top: 20px;
+    }
+    .home{
+        width: 100%;
+    }
     .text-color{
         font-size: 20px;
     }
